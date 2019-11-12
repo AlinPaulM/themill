@@ -1,0 +1,20 @@
+STEPS FOR INSTALLATION ON WINDOWS
+----------------------------------
+(you'll need to have PHP installed and have the PATH for PHP configured)
+-1. https://getcomposer.org/download/ - Download and run Composer-Setup.exe
+-2. https://symfony.com/download - download and run setup.exe
+-3. open a CLI(e.g. cmd, git bash, etc) and run "symfony new --full themill" in your folder of preference(in my case in "C:\wamp64\www\projects")
+-4. install the dependencies for creating the react app:
+		-https://nodejs.org/en/ - download and install node LTS(i also checked "Automatically install the necessary tools..." and installed those requirements as well - necessary for automatically compiling and building some node dependencies. you might get away with skipping this check, if the project doesn't need those type of dependencies)
+		-https://www.npmjs.com/get-npm - nothing to do here, npm is installed automatically when you installed nodejs
+-5. https://reactjs.org/docs/create-a-new-react-app.html#create-react-app - open a CLI, navigate to the project folder and run "npx create-react-app client"
+-6. inside /client/package.json, in "scripts", i added the commands:
+	"postbuild": "npm run upload",
+		-postbuild is run automatically after you run "npm run build" - this will run the next "upload" command
+    "upload": "cp build/index.html ../templates/build/ && cp -r build/*  ../public/",
+		-"cp build/index.html ../templates/build/" - index.html is the compiled react app that we'll render in the controller methods
+		-"cp -r build/*  ../public" - we copy all the /build files to the /public folder so the resources(css,js,images, all that) referenced in index.html can be accessed by symfony
+			-symfony looks into the /public folder for all resources, so sth like "<script src="/static/js/main.9f4d2d26.chunk.js"></script>" will be accessed from the /public/static folder
+	-i also created the /build folder inside /templates otherwise the "npm run postbuild" won't work
+-7. in your CLI, navigate to the /client folder and run "npm install node-sass". then restart the frontent server, i.e. stop and re-run "npm start". now you can use .scss files in your app
+-8. 
