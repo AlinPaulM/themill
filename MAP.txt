@@ -16,5 +16,10 @@ STEPS FOR INSTALLATION ON WINDOWS
 		-"cp -r build/*  ../public" - we copy all the /build files to the /public folder so the resources(css,js,images, all that) referenced in index.html can be accessed by symfony
 			-symfony looks into the /public folder for all resources, so sth like "<script src="/static/js/main.9f4d2d26.chunk.js"></script>" will be accessed from the /public/static folder
 	-i also created the /build folder inside /templates otherwise the "npm run postbuild" won't work
--7. in your CLI, navigate to the /client folder and run "npm install node-sass". then restart the frontent server, i.e. stop and re-run "npm start". now you can use .scss files in your app
+-7. in your CLI, navigate to the /client folder and run the following commands:
+	"npm install typescript"
+	"npm install node-sass"
+	"npm install redux"
+	"npm install react-redux"
+	-then restart the frontent server, i.e. stop and re-run "npm start".
 -8. 
