@@ -21,5 +21,12 @@ STEPS FOR INSTALLATION ON WINDOWS
 	"npm install node-sass"
 	"npm install redux"
 	"npm install react-redux"
+	"npm install axios"
+	"npm install redux-thunk"
+	"npm install react-youtube"
 	-then restart the frontent server, i.e. stop and re-run "npm start".
 -8. 
+https://developers.google.com/youtube
+	https://developers.google.com/youtube/v3/getting-started (YouTube Data API)
+		API key(Calling YouTube Data API v3 from a web browser): AIzaSyBkh3wmLBwxvC1DfAepsbRn9heVgGV9ofs
+	

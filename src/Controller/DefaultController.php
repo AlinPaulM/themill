@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController
 {
@@ -11,6 +12,10 @@ class DefaultController
      */
 	public function index()
 	{
-		die("zx");
+		return new Response(
+			'blablabla', 
+			 Response::HTTP_OK
+		);
+		return json_encode(array(1,2));
 	}
 }
