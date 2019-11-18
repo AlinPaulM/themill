@@ -25,8 +25,9 @@ STEPS FOR INSTALLATION ON WINDOWS
 	"npm install redux-thunk"
 	"npm install react-youtube"
 	-then restart the frontent server, i.e. stop and re-run "npm start".
--8. 
-https://developers.google.com/youtube
+-8. https://developers.google.com/youtube
 	https://developers.google.com/youtube/v3/getting-started (YouTube Data API)
 		API key(Calling YouTube Data API v3 from a web browser): AIzaSyBkh3wmLBwxvC1DfAepsbRn9heVgGV9ofs
-	
+-9. in your CLI, navigate to the /client folder and run the following commands:
+	"npm install vimeo"
+	"npm install @u-wave/react-vimeo"

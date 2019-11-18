@@ -17,7 +17,7 @@ class App extends React.Component {
 	render(){
 		return (
 			<div className="app">
-				<input type="text" placeholder="Search" onChange={e => this.updateInput(e.target.value)} />
+				<input className="search" type="text" placeholder="Search" onChange={e => this.updateInput(e.target.value)} />
 				<Youtube search={this.state.input} />
 				<Vimeo search={this.state.input} />
 				<Instagram search={this.state.input} />

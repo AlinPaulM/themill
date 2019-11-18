@@ -1,7 +1,7 @@
 import React from 'react';
 import YouTube from 'react-youtube';
 import { connect } from "react-redux";
-import { getYoutubeUploadsPlaylistId, getYoutubeContent, fetchingDataFct, playYoutubeVideo } from "../../redux/actions.js";
+import { getYoutubeUploadsPlaylistId, getYoutubeContent, fetchYoutubeData, playYoutubeVideo } from "../../redux/actions.js";
 import './Youtube.scss';
 
 class Youtube extends React.Component {
@@ -16,29 +16,26 @@ class Youtube extends React.Component {
 		const videoId = content[i].snippet.resourceId.videoId;
 
 		if(content[i].clicked === undefined){
-			return (
-				<div className="youtube-player">
-					<div
-						data-id={videoId}
-						onClick={() => this.props.playYoutubeVideo(i)}
-					>
-						<img src={content[i].snippet.thumbnails.high.url} />
-						<div className="play"></div>
-					</div>
-				</div>
+			return (				
+				<div
+					data-id={videoId}
+					onClick={() => this.props.playYoutubeVideo(i)}
+				>
+					<img src={content[i].snippet.thumbnails.high.url} alt="" />
+					<div className="play"></div>
+				</div>				
 			);
 		}
 		else return (
-			<div className="youtube-player">
-				<YouTube
-					videoId={videoId}
-					opts={{
-						playerVars: { // https://developers.google.com/youtube/player_parameters
-							autoplay: 1
-						}
-					}}
-				/>
-			</div>
+			<YouTube
+				videoId={videoId}
+				opts={{
+					playerVars: { // https://developers.google.com/youtube/player_parameters
+						autoplay: 1,
+						origin: window.location.href
+					}
+				}}
+			/>
 		);
 	}
 
@@ -53,9 +50,12 @@ class Youtube extends React.Component {
 
 			arr[i] = (
 				<div key={i}>
-					<p>{content[i].snippet.title}</p>					
-					{this.videoOrThumbnail(i)}
+					<p className="ellipsis">{content[i].snippet.title}</p>
+					<div className="video-player">
+						{this.videoOrThumbnail(i)}
+					</div>
 					<p>{formattedDate}</p>
+					<br />
 				</div>
 			);
 		}
@@ -63,29 +63,27 @@ class Youtube extends React.Component {
 		return arr;
 	}
 
-	loadMoreData(){		
-		window.onscroll = (e) => {			
-			if ((window.innerHeight + window.pageYOffset) + 500 >= document.body.offsetHeight) {
-				if(this.props.fetchingData) return;
-				this.props.fetchingDataFct(true);
-				
-console.log("this.props.fetchingData");
-				const uploadsPlaylistId = this.props.youtube.uploadsPlaylistId;
-				if(uploadsPlaylistId !== undefined)					
-					this.props.getYoutubeContent(uploadsPlaylistId, this.props.youtube.nextPageToken);
-			}
-		};
+	loadMoreYoutubeData = () => {
+		if ((window.innerHeight + window.pageYOffset) + 500 >= Math.max(document.body.offsetHeight, document.body.scrollHeight)) {
+			if(this.props.youtube.fetchingData) return;
+			this.props.fetchYoutubeData(true);
+
+// console.log("this.props.youtube.fetchingData");
+			const uploadsPlaylistId = this.props.youtube.uploadsPlaylistId;
+			if(uploadsPlaylistId !== undefined)					
+				this.props.getYoutubeContent(uploadsPlaylistId, this.props.youtube.nextPageToken);
+		}
 	}
 
 
 	render(){
-console.log(this.props);
+// console.log(this.props);
 		
 		// get data for the initial page load
 		if(this.props.youtube.uploadsPlaylistId !== null && !this.props.youtube.content.length)
 			this.props.getYoutubeContent(this.props.youtube.uploadsPlaylistId);
 
-		this.loadMoreData();
+		window.addEventListener('scroll', this.loadMoreYoutubeData);
 
 		return (
 			<div className="youtube">				
@@ -97,13 +95,12 @@ console.log(this.props);
 
 const mapStateToProps = state => {
 	return {
-		fetchingData: state.fetchingData,
 		youtube: state.youtube
 	};
 };
 export default connect(mapStateToProps, {
 	getYoutubeUploadsPlaylistId, 
 	getYoutubeContent, 
-	fetchingDataFct,
+	fetchYoutubeData,
 	playYoutubeVideo
 })(Youtube);
