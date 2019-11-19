@@ -14,18 +14,29 @@ class Instagram extends React.Component {
 	}
 
 	videoOrThumbnail(i){
-		const content = this.props.vimeo.content;
+		const content = this.props.instagram.content;
 
-		if(content[i].clicked === undefined){
-			return (
-				<img 
-					onClick={() => this.props.playVimeoVideo(i)}
-					src={content[i].pictures.sizes[3].link_with_play_button} alt=""
-				/>
-			);
+		if(content[i].media_type === "IMAGE"){
+			return <img src={content[i].permalink + "/media?size=l"} alt="" />;
 		}
-		else{
-			return <VimeoPlayer video={content[i].link} autoplay />;
+		else if(content[i].media_type === "VIDEO"){
+			if(content[i].clicked === undefined){
+				return (
+					<div>
+						<img src={content[i].thumbnail_url} alt="" />
+						<div className="play"></div>
+					</div>
+				);
+				return (
+					<img 
+						onClick={() => this.props.playVimeoVideo(i)}
+						src={content[i].pictures.sizes[3].link_with_play_button} alt=""
+					/>
+				);
+			}
+			else{
+				return <img src={content[i].thumbnail_url} alt="" />;//<VimeoPlayer video={content[i].link} autoplay />;
+			}
 		}
 	}
 
@@ -35,12 +46,12 @@ class Instagram extends React.Component {
 		
 		const arr = [];
 		for(var i = 0; i < content.length; i++){
-			const date = new Date(content[i].release_time);
+			const date = new Date(content[i].timestamp);
 			const formattedDate = date.toLocaleString('en-GB', { timeZone: 'UTC' });			
 
 			arr[i] = (
 				<div key={i}>
-					<p className="ellipsis">{content[i].name}</p>
+					<p className="ellipsis">{content[i].caption}</p>
 					<div className="video-player">						
 						{this.videoOrThumbnail(i)}
 					</div>
@@ -72,7 +83,7 @@ console.log(this.props);
 
 		return (
 			<div className="instagram">
-				{/* {this.content()} */}
+				{this.content()}
 			</div>
 		);
 	}
