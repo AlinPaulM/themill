@@ -138,11 +138,12 @@ export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => di
 	});
 };
 */
-export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => dispatch => {	
+export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => dispatch => {
 	const form = new FormData();
 	form.set('app_id', appId);
 	form.set('app_secret', appSecret);
 	form.set('grant_type', "authorization_code");
+	form.set('redirect_uri', redirect_uri);
 	form.set('code', code);
 
 	axios.post('https://api.instagram.com/oauth/access_token', form, {
@@ -159,6 +160,6 @@ export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => di
 		console.log(error);
 	})
 	.finally(function () {
-		console.log("executed");
+		console.log("code:"+code);
 	});
 };
