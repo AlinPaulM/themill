@@ -4,18 +4,19 @@ namespace App\Controller;
 
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController
+class DefaultController extends Controller
 {
 	/**
      * @Route("/", name="index")
      */
 	public function index()
 	{
-		return new Response(
-			'blablabla', 
-			 Response::HTTP_OK
+		return $this->render(
+			"build/index.html", [
+				"controller_name" => "DefaultController",
+			]
 		);
-		return json_encode(array(1,2));
 	}
 }
