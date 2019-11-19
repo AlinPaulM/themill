@@ -1,17 +1,23 @@
 import {
-	SET_INSTAGRAM_AUTH_CODE
+	SET_INSTAGRAM_AUTH_DATA
  } from "../actionTypes.js";
 
 const initialState = {
-	authCode: null
+	authData: {
+		token: null,
+		userId: null
+	}
 };
 
 export default function(state = initialState, action) {
 	switch (action.type) {
-		case SET_INSTAGRAM_AUTH_CODE: {
+		case SET_INSTAGRAM_AUTH_DATA: {
 			return {
 				...state,
-				authCode: action.payload
+				authData: {
+					token: action.payload.token,
+					userId: action.payload.userId
+				}
 			};
 	  	}
 		default:

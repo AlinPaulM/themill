@@ -8,7 +8,7 @@ import {
 	GET_VIMEO_CONTENT,
 	PLAY_VIMEO_VIDEO,
 
-	SET_INSTAGRAM_AUTH_CODE
+	SET_INSTAGRAM_AUTH_DATA
  } from "./actionTypes";
 
 const axios = require('axios');
@@ -116,9 +116,24 @@ export const playVimeoVideo = (i) => {
 
 
 
-export const setInstagramAuthCode = (code) => {
-	return {
-		type: SET_INSTAGRAM_AUTH_CODE,
-		payload: code
-	}
+export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => dispatch => {
+	axios.post('https://api.instagram.com/oauth/access_token',{
+    	app_id: appId,
+    	app_secret: appSecret,
+    	grant_type: "authorization_code",
+    	redirect_uri: redirect_uri,
+    	code: code
+  	})
+	.then(function (response) {
+		console.log(response);
+		// dispatch({
+		// 	type: SET_INSTAGRAM_AUTH_DATA, 
+		// 	payload: {token: response.access_token, userId: response.user_id}
+		// });
+	})
+	.catch(function (error) {
+		console.log(error);
+	})
+	.finally(function () {
+	});
 };
