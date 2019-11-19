@@ -129,6 +129,7 @@ export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => di
     	headers: { 'Content-Type': 'multipart/form-data' }
   	})
 	.then(function (response) {
+		console.log(response);
 		dispatch({
 			type: SET_INSTAGRAM_AUTH_DATA, 
 			payload: {token: response.access_token, userId: response.user_id}
