@@ -31,3 +31,18 @@ STEPS FOR INSTALLATION ON WINDOWS
 -9. in your CLI, navigate to the /client folder and run the following commands:
 	"npm install vimeo"
 	"npm install @u-wave/react-vimeo"
+-10. https://developers.facebook.com/docs/instagram-basic-display-api
+	https://api.instagram.com/oauth/authorize?app_id=566407840787639&redirect_uri=https%3A%2F%2Fgithub.com%2Falinpaulm&scope=user_profile,user_media&response_type=code
+		-NOTE: idk why but the spacing for curl makes a difference, so copy-paste the example from instagram's API docs as it is, then edit it in sublime, then copy-paste it in git bash and hit enter to run it.
+curl -X POST \
+  'https://api.instagram.com/oauth/access_token' \
+  -F app_id=566407840787639 \
+  -F app_secret=30f34771ff0f7a16b9390eac9a19436f \
+  -F grant_type=authorization_code \
+  -F redirect_uri=https://github.com/alinpaulm \
+  -F code=AQCCwbacm3JrtNISzoFQHE3norrrJJ1weOC8v9PY83hg4SSlLcChzdjILBcYQ1AfflFArU6ao4DAz24XvGZc4prmbjiLQ99bC3WJu5KC2lepKaPik42PJkYeNh2JZ-QykV43dII6l_9FRkli1qW2Ql0OXy9kIr5CcveAX9-DUNUVpcLd3td40rX2gqf6ZXaK0pqEkCtutaYcba0YJjxapLqS4vnEq0EtwdWqgmpkbN6uvg
+
+  "access_token": "IGQVJWZAWhiQ1YtTlhsSHhBZAUhTZA0REZAHhHMmtNUzdzVm9GRWtqYkVmYzhYT09mQ1dYNHh2R0xsMXhGWFUxcHNrS09ZAN3k4WHdmUFhPMkEwSUREVG81b2phUXZAyS2MzVzNSSWNRRVIxMFJjTnBQOGk3Y0VKX3lPWmZAMb3JZA", "user_id": 17841409433456753
+
+  curl -X GET \
+  'https://graph.instagram.com/17841409433456753?fields=id,username&access_token=IGQVJWZAWhiQ1YtTlhsSHhBZAUhTZA0REZAHhHMmtNUzdzVm9GRWtqYkVmYzhYT09mQ1dYNHh2R0xsMXhGWFUxcHNrS09ZAN3k4WHdmUFhPMkEwSUREVG81b2phUXZAyS2MzVzNSSWNRRVIxMFJjTnBQOGk3Y0VKX3lPWmZAMb3JZA'
