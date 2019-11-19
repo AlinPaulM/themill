@@ -6,7 +6,9 @@ import {
 
 	FETCHING_VIMEO_DATA,
 	GET_VIMEO_CONTENT,
-	PLAY_VIMEO_VIDEO
+	PLAY_VIMEO_VIDEO,
+
+	SET_INSTAGRAM_AUTH_CODE
  } from "./actionTypes";
 
 const axios = require('axios');
@@ -107,5 +109,16 @@ export const playVimeoVideo = (i) => {
 	return {
 		type: PLAY_VIMEO_VIDEO,
 		payload: i
+	}
+};
+
+
+
+
+
+export const setInstagramAuthCode = (code) => {
+	return {
+		type: SET_INSTAGRAM_AUTH_CODE,
+		payload: code
 	}
 };

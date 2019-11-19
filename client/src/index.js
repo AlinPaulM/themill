@@ -1,14 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App/App.jsx';
+import AppRouting from './components/App/AppRouting.jsx';
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import './index.scss';
 // import * as serviceWorker from './serviceWorker';
+import { Redirect, BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 ReactDOM.render(
 	<Provider store={store}>
-	  <App />
+		<Router>
+			<Switch>
+				<Route 
+					path="/"
+					render={(props) => <AppRouting qs={props.location.search} />}
+				/>
+			</Switch>
+		</Router>
 	</Provider>,
 	document.getElementById('root')
 );
