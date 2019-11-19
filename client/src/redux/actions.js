@@ -145,7 +145,8 @@ export const getInstagramContent = (accessToken) => async(dispatch) => {
 	await axios.get('https://graph.instagram.com/me/media',{
 		params: {
 			fields: 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username',
-			access_token: accessToken
+			access_token: accessToken,
+			limit: 5 // couldn't find it in the documentation but it works(as of now)
 		}
 	})
 	.then(function (response) {
