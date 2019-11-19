@@ -138,7 +138,7 @@ export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => di
 	});
 };
 */
-export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => dispatch => {
+export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => dispatch => {	
 	const form = new FormData();
 	form.set('app_id', appId);
 	form.set('app_secret', appSecret);
@@ -159,5 +159,6 @@ export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => di
 		console.log(error);
 	})
 	.finally(function () {
+		console.log("executed");
 	});
 };
