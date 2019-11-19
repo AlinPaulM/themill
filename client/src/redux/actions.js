@@ -150,23 +150,39 @@ export const fetchInstagramData = (value) /*=> dispatch*/ => {
 	}
 };
 
-export const getInstagramContent = (accessToken) => async(dispatch) => {
-	await axios.get('https://graph.instagram.com/me/media',{
-		params: {
-			fields: 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username',
-			access_token: accessToken,
-			limit: 5 // couldn't find it in the documentation but it works(as of now)
-		}
-	})
-	.then(function (response) {
-		dispatch({
-			type: GET_INSTAGRAM_CONTENT, 
-			payload: {content: response.data.data, next: response.data.paging.next, fetchingData: false}
+export const getInstagramContent = (accessToken, next = '') => async(dispatch) => {
+	if(next === ''){
+		await axios.get('https://graph.instagram.com/me/media',{
+			params: {
+				fields: 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username',
+				access_token: accessToken,
+				limit: 5 // couldn't find it in the documentation but it works(as of now)
+			}
+		})
+		.then(function (response) {
+			dispatch({
+				type: GET_INSTAGRAM_CONTENT, 
+				payload: {content: response.data.data, next: response.data.paging.next, fetchingData: false}
+			});
+		})
+		.catch(function (error) {
+			console.log(error);
+		})
+		.finally(function () {
 		});
-	})
-	.catch(function (error) {
-		console.log(error);
-	})
-	.finally(function () {
-	});
+	}
+	else{
+		await axios.get(next)
+		.then(function (response) {
+			dispatch({
+				type: GET_INSTAGRAM_CONTENT, 
+				payload: {content: response.data.data, next: response.data.paging.next, fetchingData: false}
+			});
+		})
+		.catch(function (error) {
+			console.log(error);
+		})
+		.finally(function () {
+		});
+	}
 };

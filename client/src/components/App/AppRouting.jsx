@@ -12,8 +12,7 @@ console.log(this.props);
 		const instagramAppSecret = "30f34771ff0f7a16b9390eac9a19436f";
 		const website = "https://localhost:8000/";
 
-		const instagramAccessToken = this.props.instagram.authData.token;
-		if(instagramAccessToken === null){
+		if(this.props.instagram.authData.token === null){
 			const authCode = new URLSearchParams(this.props.qs).get('code');
 
 			if(authCode === null){
@@ -38,8 +37,6 @@ console.log(this.props);
 			}
 		}
 		else{
-			this.props.getInstagramContent(instagramAccessToken);
-
 			return <App />;
 		}
 	}
