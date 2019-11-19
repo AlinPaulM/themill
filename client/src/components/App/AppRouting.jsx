@@ -38,7 +38,7 @@ console.log(this.props);
 			}
 		}
 		else{
-			this.props.getInstagramContent(instagramAccessToken);
+			// this.props.getInstagramContent(instagramAccessToken);
 
 			return <App />;
 		}
