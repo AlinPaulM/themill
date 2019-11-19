@@ -29,7 +29,7 @@ console.log(this.props);
 				return null;
 			}
 			else{
-				this.props.getInstagramTokenAndUserId(instagramAppId, instagramAppSecret, website, authCode);
+				this.props.setInstagramAuthData(instagramAppId, instagramAppSecret, website, authCode);
 				
 				// display loader until the state is updated w the token so the app can display instagram data
 				return null;
