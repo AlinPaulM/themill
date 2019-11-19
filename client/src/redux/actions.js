@@ -8,7 +8,9 @@ import {
 	GET_VIMEO_CONTENT,
 	PLAY_VIMEO_VIDEO,
 
-	SET_INSTAGRAM_AUTH_DATA
+	SET_INSTAGRAM_AUTH_DATA,
+	FETCHING_INSTAGRAM_DATA,
+	GET_INSTAGRAM_CONTENT
  } from "./actionTypes";
 
 const axios = require('axios');
@@ -141,6 +143,13 @@ export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => di
 	});
 };
 
+export const fetchInstagramData = (value) /*=> dispatch*/ => {
+	return {
+		type: FETCHING_INSTAGRAM_DATA,
+		payload: value
+	}
+};
+
 export const getInstagramContent = (accessToken) => async(dispatch) => {
 	await axios.get('https://graph.instagram.com/me/media',{
 		params: {
@@ -150,11 +159,10 @@ export const getInstagramContent = (accessToken) => async(dispatch) => {
 		}
 	})
 	.then(function (response) {
-		console.log(response);
-		// dispatch({
-		// 	type: GET_INSTAGRAM_CONTENT,
-		// 	payload: {token: response.access_token, userId: response.user_id}
-		// });
+		dispatch({
+			type: GET_INSTAGRAM_CONTENT, 
+			payload: {content: response.data.data, next: response.data.paging.next, fetchingData: false}
+		});
 	})
 	.catch(function (error) {
 		console.log(error);
