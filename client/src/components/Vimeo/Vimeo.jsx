@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 import { getVimeoContent, fetchVimeoData, playVimeoVideo } from "../../redux/actions.js";
 import VimeoPlayer from '@u-wave/react-vimeo';
-import './Vimeo.scss';
 
 class Vimeo extends React.Component {
 	constructor(props){
@@ -69,7 +68,7 @@ class Vimeo extends React.Component {
 		window.addEventListener('scroll', this.loadMoreVimeoData);
 
 		return (
-			<div className="vimeo">
+			<div className="column3">
 				{this.content()}
 			</div>
 		);

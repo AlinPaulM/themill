@@ -2,7 +2,6 @@ import React from 'react';
 import YouTube from 'react-youtube';
 import { connect } from "react-redux";
 import { getYoutubeUploadsPlaylistId, getYoutubeContent, fetchYoutubeData, playYoutubeVideo } from "../../redux/actions.js";
-import './Youtube.scss';
 
 class Youtube extends React.Component {
 	constructor(props){
@@ -86,7 +85,7 @@ class Youtube extends React.Component {
 		window.addEventListener('scroll', this.loadMoreYoutubeData);
 
 		return (
-			<div className="youtube">				
+			<div className="column3">	
 				{this.content()}
 			</div>
 		);

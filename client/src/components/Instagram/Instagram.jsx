@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { getInstagramContent, fetchInstagramData } from "../../redux/actions.js";
-import VimeoPlayer from '@u-wave/react-vimeo';
-// import './Vimeo.scss';
+import './Instagram.scss';
 
 class Instagram extends React.Component {
 	constructor(props){
@@ -17,7 +16,7 @@ class Instagram extends React.Component {
 		const content = this.props.instagram.content;
 
 		if(content[i].media_type === "IMAGE"){
-			return <img src={content[i].permalink + "/media?size=l"} alt="" />;
+			return <img src={content[i].permalink + "media?size=l"} alt="" />;
 		}
 		else if(content[i].media_type === "VIDEO"){
 			if(content[i].clicked === undefined){
@@ -35,13 +34,13 @@ class Instagram extends React.Component {
 				);
 			}
 			else{
-				return <img src={content[i].thumbnail_url} alt="" />;//<VimeoPlayer video={content[i].link} autoplay />;
+				return <img src={content[i].thumbnail_url} alt="" />;
 			}
 		}
 	}
 
 	content(){
-		const content = this.props.vimeo.content;
+		const content = this.props.instagram.content;
 		if(!content.length) return;
 		
 		const arr = [];
@@ -82,7 +81,7 @@ console.log(this.props);
 		// window.addEventListener('scroll', this.loadMoreInstagramData);
 
 		return (
-			<div className="instagram">
+			<div className="column3">
 				{this.content()}
 			</div>
 		);
