@@ -151,6 +151,8 @@ export const fetchInstagramData = (value) /*=> dispatch*/ => {
 };
 
 export const getInstagramContent = (accessToken, next = '') => async(dispatch) => {
+	if(next === undefined) return;
+
 	if(next === ''){
 		await axios.get('https://graph.instagram.com/me/media',{
 			params: {

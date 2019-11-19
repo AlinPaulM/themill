@@ -78,7 +78,7 @@ class Instagram extends React.Component {
 	render(){
 console.log(this.props);
 
-		// window.addEventListener('scroll', this.loadMoreInstagramData);
+		window.addEventListener('scroll', this.loadMoreInstagramData);
 
 		return (
 			<div className="column3">

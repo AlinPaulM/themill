@@ -1,4 +1,7 @@
 .app{
+	max-width: 1400px;
+	margin: auto;
+
 	.search{
 		display: block;
 		width: 99%;
@@ -13,7 +16,7 @@
 		overflow: hidden;
 		max-width: 100%;
 		background: #000;
-		margin: 5px;
+		margin: 5px 15px;
 
 		iframe {
 			position: absolute;
@@ -67,12 +70,13 @@
 	}
 
 	.column3{
-		width: 33.3%;
+		width: 30%;
 		float: left;
 		padding: 0 10px;
 
 		p{
 			font-size: 14px;
+			margin: 10px 15px;
 		}
 	}
 }
