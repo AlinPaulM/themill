@@ -46,3 +46,7 @@ curl -X POST \
 
   curl -X GET \
   'https://graph.instagram.com/17841409433456753?fields=id,username&access_token=IGQVJWZAWhiQ1YtTlhsSHhBZAUhTZA0REZAHhHMmtNUzdzVm9GRWtqYkVmYzhYT09mQ1dYNHh2R0xsMXhGWFUxcHNrS09ZAN3k4WHdmUFhPMkEwSUREVG81b2phUXZAyS2MzVzNSSWNRRVIxMFJjTnBQOGk3Y0VKX3lPWmZAMb3JZA'
+-11. https://symfony.com/doc/current/setup/symfony_server.html#enabling-tls
+		-stop the "php bin/console server:run" server that i used so far
+		-in your CLI, run "symfony server:ca:install"
+		-run "symfony server:start" to run the symfony server with https
