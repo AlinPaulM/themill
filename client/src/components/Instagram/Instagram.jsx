@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { getInstagramContent, fetchInstagramData } from "../../redux/actions.js";
+import VimeoPlayer from '@u-wave/react-vimeo';
 // import './Vimeo.scss';
 
 class Instagram extends React.Component {
