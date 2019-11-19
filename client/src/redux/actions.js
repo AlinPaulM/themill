@@ -115,31 +115,10 @@ export const playVimeoVideo = (i) => {
 
 
 
-/*
-export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => dispatch => {
-	axios.post('https://api.instagram.com/oauth/access_token',{
-    	app_id: appId,
-    	app_secret: appSecret,
-    	grant_type: "authorization_code",
-    	redirect_uri: redirect_uri,
-    	code: code
-  	})
-	.then(function (response) {
-		console.log(response);
-		// dispatch({
-		// 	type: SET_INSTAGRAM_AUTH_DATA, 
-		// 	payload: {token: response.access_token, userId: response.user_id}
-		// });
-	})
-	.catch(function (error) {
-		console.log(error);
-	})
-	.finally(function () {
-	});
-};
-*/
+
 export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => dispatch => {
 	const form = new FormData();
+
 	form.set('app_id', appId);
 	form.set('app_secret', appSecret);
 	form.set('grant_type', "authorization_code");
@@ -150,9 +129,29 @@ export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => di
     	headers: { 'Content-Type': 'multipart/form-data' }
   	})
 	.then(function (response) {
+		dispatch({
+			type: SET_INSTAGRAM_AUTH_DATA, 
+			payload: {token: response.access_token, userId: response.user_id}
+		});
+	})
+	.catch(function (error) {
+		console.log(error);
+	})
+	.finally(function () {
+	});
+};
+
+export const getInstagramContent = (accessToken) => async(dispatch) => {
+	await axios.get('https://graph.instagram.com/me/media',{
+		params: {
+			fields: 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username',
+			access_token: accessToken
+		}
+	})
+	.then(function (response) {
 		console.log(response);
 		// dispatch({
-		// 	type: SET_INSTAGRAM_AUTH_DATA, 
+		// 	type: GET_INSTAGRAM_CONTENT,
 		// 	payload: {token: response.access_token, userId: response.user_id}
 		// });
 	})
@@ -160,6 +159,5 @@ export const setInstagramAuthData = (appId, appSecret, redirect_uri, code) => di
 		console.log(error);
 	})
 	.finally(function () {
-		console.log("code:"+code);
 	});
 };
