@@ -61,8 +61,8 @@ curl -X POST \
   -F app_id=566407840787639 \
   -F app_secret=30f34771ff0f7a16b9390eac9a19436f \
   -F grant_type=authorization_code \
-  -F redirect_uri=https://github.com/alinpaulm \
-  -F code=AQCCwbacm3JrtNISzoFQHE3norrrJJ1weOC8v9PY83hg4SSlLcChzdjILBcYQ1AfflFArU6ao4DAz24XvGZc4prmbjiLQ99bC3WJu5KC2lepKaPik42PJkYeNh2JZ-QykV43dII6l_9FRkli1qW2Ql0OXy9kIr5CcveAX9-DUNUVpcLd3td40rX2gqf6ZXaK0pqEkCtutaYcba0YJjxapLqS4vnEq0EtwdWqgmpkbN6uvg
+  -F redirect_uri=https://localhost:8000/ \
+  -F code=AQApsSbhbgteJf27ml1NL94vhOSZQ4BobB09RQkE6t75PKSGGZ0uUVM9_UYXP8TaEovritPhznKYHFxdnhoelPhaMvaVsZuNs11A5S0RAOGMAxI2pkEwDRg62TmAjfHCg2RW3lCB6iIUGc6rNthvHAeY1eLs80kN5NY4b3HYMDURBa5tAg36_D19kF0OxiasbB5eJhkKLBfr1SUC9HHvPxy5e5KnKhrqkyFlmsM6Hmc04Q
 
   "access_token": "IGQVJWZAWhiQ1YtTlhsSHhBZAUhTZA0REZAHhHMmtNUzdzVm9GRWtqYkVmYzhYT09mQ1dYNHh2R0xsMXhGWFUxcHNrS09ZAN3k4WHdmUFhPMkEwSUREVG81b2phUXZAyS2MzVzNSSWNRRVIxMFJjTnBQOGk3Y0VKX3lPWmZAMb3JZA", "user_id": 17841409433456753
 
