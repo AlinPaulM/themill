@@ -85,6 +85,7 @@
 		p{
 			font-size: 14px;
 			margin: 10px 15px;
+			color: wheat;
 		}
 	}
 }
@@ -101,4 +102,9 @@
 
 .ReactModal__Overlay{
 	z-index: 99999999;
+	background-color: rgba(16,16,16, 0.75);
+}
+
+.ReactModal__Content{
+	background: #282828;
 }
