@@ -29,7 +29,6 @@ class AppRouting extends React.Component {
 				// step 2: getting the instagram auth data(token and the user_id)
 				this.props.setInstagramAuthData(instagramAppId, instagramAppSecret, website, authCode);
 				
-				// display loader until the state is updated w the token so the app can display instagram data
 				return null;				
 			}
 		}
