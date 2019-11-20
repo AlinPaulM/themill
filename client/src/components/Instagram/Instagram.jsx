@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { getInstagramContent, fetchInstagramData, loadInstagramImage, playInstagramVideo } from "../../redux/actions.js";
+import { getInstagramContent, fetchInstagramData, loadInstagramImage, loadInstagramVideo } from "../../redux/actions.js";
 import Modal from 'react-modal';
 import './Instagram.scss';
 
@@ -30,11 +30,6 @@ class Instagram extends React.Component {
 		this.setState({ modals: modals });
 	}
 
-	isModalOpen(i){
-		if(this.state.modals[i] === undefined) return true; // open the modal when we first load it into the DOM
-		else return this.state.modals[i];
-	}
-
 	videoOrThumbnail(i){
 		const content = this.props.instagram.content;
 
@@ -42,28 +37,31 @@ class Instagram extends React.Component {
 			if(content[i].clicked === undefined){
 				return (
 					<img
-						onclick={() => this.props.loadInstagramImage(i)}
+						onClick={() => this.props.loadInstagramImage(i)}
 						src={content[i].permalink + "media?size=l"} 
 						alt=""
 					/>
 				);
 			}
-			else{return null;
+			else{
 				return (
 					<div>
 						<img
-							onclick={(i) => this.openModal(i)}
+							onClick={() => this.openModal(i)}
 							src={content[i].permalink + "media?size=l"}
 							alt=""
 						/>
 						<Modal
-							isOpen={(i) => this.isModalOpen(i)}
-							shouldCloseOnOverlayClick={true}							
+							isOpen={this.state.modals[i] === undefined ? true : this.state.modals[i]}
+							onRequestClose={() => this.closeModal(i)}
+							shouldCloseOnOverlayClick={true}						
 						>
-							<img
-								onclick={(i) => this.closeModal(i)}
-								src={content[i].media_url} alt=""
-							/>
+							<div 
+								className="modalContent"
+								onClick={() => this.closeModal(i)}
+							>
+								<img src={content[i].media_url} alt="" />
+							</div>
 						</Modal>
 					</div>
 				);
@@ -71,16 +69,26 @@ class Instagram extends React.Component {
 
 		}
 		else if(content[i].media_type === "VIDEO"){
+			const innerElem = (
+				<div>
+					<img src={content[i].thumbnail_url} alt="" />
+					<div className="play"></div>
+				</div>
+			);
+			
 			if(content[i].clicked === undefined){
 				return (
-					<div onClick={() => this.props.playInstagramVideo(content[i].permalink, i)}>
-						<img src={content[i].thumbnail_url} alt="" />
-						<div className="play"></div>
+					<div onClick={() => this.props.loadInstagramVideo(content[i].permalink, i)}>
+						{innerElem}
 					</div>
 				);
 			}
 			else{
-				return <div dangerouslySetInnerHTML={{__html: content[i].html}} />;
+				return (
+					<video controls autoPlay>
+						<source src={content[i].html} type="video/mp4" />
+					</video>
+				);
 			}
 		}
 	}
@@ -122,7 +130,7 @@ class Instagram extends React.Component {
 
 
 	render(){
-console.log(this.props);
+console.log(this);
 
 		window.addEventListener('scroll', this.loadMoreInstagramData);
 
@@ -143,5 +151,5 @@ export default connect(mapStateToProps, {
 	getInstagramContent, 
 	fetchInstagramData,
 	loadInstagramImage,
-	playInstagramVideo
+	loadInstagramVideo
 })(Instagram);

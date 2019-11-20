@@ -50,6 +50,14 @@
 			}
 		}
 
+		video {
+			position: absolute;
+			right: 0;
+			top: 0;
+			max-height: 100%;
+			width: 100%;
+		}
+
 		.play {
 			height: 72px;
 			width: 72px;
@@ -78,5 +86,15 @@
 			font-size: 14px;
 			margin: 10px 15px;
 		}
+	}
+}
+
+.modalContent{
+	text-align: -moz-center;
+	text-align: -webkit-center;
+	height: 100%;
+
+	img{
+		height: inherit;
 	}
 }
