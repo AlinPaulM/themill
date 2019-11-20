@@ -189,7 +189,7 @@ export const getInstagramContent = (val, firstRequest = false) => async(dispatch
 	}
 };
 
-export const loadInstagramImage = (i) => {
+export const loadInstagramImage = (i) => {console.log(i);
 	return {
 		type: LOAD_INSTAGRAM_IMAGE,
 		payload: i
@@ -205,7 +205,6 @@ export const playInstagramVideo = (url, i) => async(dispatch) => {
 			}
 		})
 		.then(function (response) {
-			console.log(response);
 			dispatch({
 				type: GET_INSTAGRAM_VIDEO_EMBED, 
 				payload: {i: i, html: response.data.html}

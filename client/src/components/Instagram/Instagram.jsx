@@ -48,7 +48,7 @@ class Instagram extends React.Component {
 					/>
 				);
 			}
-			else{
+			else{return null;
 				return (
 					<div>
 						<img
