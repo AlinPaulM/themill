@@ -2,7 +2,7 @@ import React from 'react';
 import App from './App.jsx';
 import { connect } from "react-redux";
 import { setInstagramAuthData, getInstagramContent } from "../../redux/actions.js";
-// import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class AppRouting extends React.Component {
 	render(){
@@ -31,7 +31,8 @@ class AppRouting extends React.Component {
 				this.props.setInstagramAuthData(instagramAppId, instagramAppSecret, website, authCode);
 				
 				// display loader until the state is updated w the token so the app can display instagram data
-				return null;
+				// return null;
+				return <Redirect to="/" />;
 			}
 		}
 		else{
