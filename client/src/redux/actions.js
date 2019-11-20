@@ -10,7 +10,8 @@ import {
 
 	SET_INSTAGRAM_AUTH_DATA,
 	FETCHING_INSTAGRAM_DATA,
-	GET_INSTAGRAM_CONTENT
+	GET_INSTAGRAM_CONTENT,
+	GET_INSTAGRAM_VIDEO_EMBED
  } from "./actionTypes";
 
 const axios = require('axios');
@@ -185,4 +186,27 @@ export const getInstagramContent = (val, firstRequest = false) => async(dispatch
 		.finally(function () {
 		});
 	}
+};
+
+export const playInstagramVideo = (url, i) => async(dispatch) => {
+	await axios.get('https://api.instagram.com/oembed',{
+			params: {
+				url: url,
+				omitscript: true,
+				hidecaption: true
+			}
+		})
+		.then(function (response) {
+			console.log(response);
+			dispatch({
+				type: GET_INSTAGRAM_VIDEO_EMBED, 
+				payload: {i: i, html: response.data.html}
+			});
+		})
+		.catch(function (error) {
+			console.log(error);
+		})
+		.finally(function () {
+			window.instgrm.Embeds.process();
+		});
 };

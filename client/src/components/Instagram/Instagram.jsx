@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { getInstagramContent, fetchInstagramData } from "../../redux/actions.js";
+import { getInstagramContent, fetchInstagramData, playInstagramVideo } from "../../redux/actions.js";
 import './Instagram.scss';
 
 class Instagram extends React.Component {
@@ -10,6 +10,11 @@ class Instagram extends React.Component {
 
 		// get data for the initial page load
 		this.props.getInstagramContent(this.props.instagram.authData.token, true);
+
+		const script = document.createElement("script");
+		script.src = "https://platform.instagram.com/en_US/embeds.js";
+		script.async = true;
+		document.body.appendChild(script);
 	}
 
 	videoOrThumbnail(i){
@@ -22,19 +27,15 @@ class Instagram extends React.Component {
 			if(content[i].clicked === undefined){
 				return (
 					<div>
-						<img src={content[i].thumbnail_url} alt="" />
+						<img
+							onClick={() => this.props.playInstagramVideo(content[i].permalink, i)}
+							src={content[i].thumbnail_url} alt="" />
 						<div className="play"></div>
 					</div>
 				);
-				return (
-					<img 
-						onClick={() => this.props.playVimeoVideo(i)}
-						src={content[i].pictures.sizes[3].link_with_play_button} alt=""
-					/>
-				);
 			}
 			else{
-				return <img src={content[i].thumbnail_url} alt="" />;
+				return <div dangerouslySetInnerHTML={{__html: content[i].html}} />;
 			}
 		}
 	}
@@ -95,5 +96,6 @@ const mapStateToProps = state => {
 };
 export default connect(mapStateToProps, {
 	getInstagramContent, 
-	fetchInstagramData
+	fetchInstagramData,
+	playInstagramVideo
 })(Instagram);

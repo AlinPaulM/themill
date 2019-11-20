@@ -1,7 +1,8 @@
 import {
 	SET_INSTAGRAM_AUTH_DATA,
 	FETCHING_INSTAGRAM_DATA,
-	GET_INSTAGRAM_CONTENT
+	GET_INSTAGRAM_CONTENT,
+	GET_INSTAGRAM_VIDEO_EMBED
  } from "../actionTypes.js";
 
 const initialState = {
@@ -37,6 +38,16 @@ export default function(state = initialState, action) {
 					token: action.payload.token,
 					userId: action.payload.userId
 				}
+			};
+		  }
+		  case GET_INSTAGRAM_VIDEO_EMBED: {
+			const content = state.content;
+			content[action.payload.i].clicked = true;
+			content[action.payload.i].html = action.payload.html;
+
+			return {
+				...state,
+				content: content
 			};
 	  	}
 		default:
