@@ -10,9 +10,8 @@ class AppRouting extends React.Component {
 		const instagramAppSecret = "30f34771ff0f7a16b9390eac9a19436f";
 		const website = "https://localhost:8000/";
 
+		const authCode = new URLSearchParams(this.props.qs).get('code');
 		if(this.props.instagram.authData.token === null){
-			const authCode = new URLSearchParams(this.props.qs).get('code');
-
 			if(authCode === null){
 				// step 1: authenticate the instagram user & receive authorization to access his data
 				const authInstagramUser = 
@@ -31,12 +30,12 @@ class AppRouting extends React.Component {
 				this.props.setInstagramAuthData(instagramAppId, instagramAppSecret, website, authCode);
 				
 				// display loader until the state is updated w the token so the app can display instagram data
-				// return null;
-				return <Redirect to="/" />;
+				return null;				
 			}
 		}
 		else{
-			return <App />;
+			if(authCode !== null) return <Redirect to="/" />;
+			else return <App />;
 		}
 	}
 }
