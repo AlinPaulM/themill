@@ -98,3 +98,7 @@
 		height: inherit;
 	}
 }
+
+.ReactModal__Overlay{
+	z-index: 99999999;
+}
