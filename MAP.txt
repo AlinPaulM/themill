@@ -32,6 +32,7 @@ STEPS FOR INSTALLATION ON WINDOWS
 	"npm install vimeo"
 	"npm install @u-wave/react-vimeo"
 	"npm install react-router-dom"
+	"npm install react-modal"
 -10. INSTAGRAM INTEGRATION
 	-prerequisites
 		(-you need to have a facebook account with https://developers.facebook.com/ enabled, obviously)
