@@ -150,14 +150,12 @@ export const fetchInstagramData = (value) /*=> dispatch*/ => {
 	}
 };
 
-export const getInstagramContent = (accessToken, next = '') => async(dispatch) => {
-	if(next === undefined) return;
-
-	if(next === ''){
+export const getInstagramContent = (val, firstRequest = false) => async(dispatch) => {
+	if(firstRequest === true){
 		await axios.get('https://graph.instagram.com/me/media',{
 			params: {
 				fields: 'id,caption,media_type,media_url,permalink,thumbnail_url,timestamp,username',
-				access_token: accessToken,
+				access_token: val,
 				limit: 5 // couldn't find it in the documentation but it works(as of now)
 			}
 		})
@@ -173,8 +171,8 @@ export const getInstagramContent = (accessToken, next = '') => async(dispatch) =
 		.finally(function () {
 		});
 	}
-	else{
-		await axios.get(next)
+	else if(val !== undefined){
+		await axios.get(val)
 		.then(function (response) {
 			dispatch({
 				type: GET_INSTAGRAM_CONTENT, 

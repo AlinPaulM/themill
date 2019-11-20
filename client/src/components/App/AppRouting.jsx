@@ -6,8 +6,6 @@ import { setInstagramAuthData, getInstagramContent } from "../../redux/actions.j
 
 class AppRouting extends React.Component {
 	render(){
-console.log(this.props);
-
 		const instagramAppId = "566407840787639";
 		const instagramAppSecret = "30f34771ff0f7a16b9390eac9a19436f";
 		const website = "https://localhost:8000/";

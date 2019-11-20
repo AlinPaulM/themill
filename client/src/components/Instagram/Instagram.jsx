@@ -9,7 +9,7 @@ class Instagram extends React.Component {
 		this.state = { videoIds: "" };
 
 		// get data for the initial page load
-		this.props.getInstagramContent(this.props.instagram.authData.token);
+		this.props.getInstagramContent(this.props.instagram.authData.token, true);
 	}
 
 	videoOrThumbnail(i){
@@ -69,7 +69,7 @@ class Instagram extends React.Component {
 				if(this.props.instagram.fetchingData) return;
 				this.props.fetchInstagramData(true);
 				
-				this.props.getInstagramContent(this.props.instagram.authData.token, this.props.instagram.next);
+				this.props.getInstagramContent(this.props.instagram.next);
 			}
 		};
 	}
