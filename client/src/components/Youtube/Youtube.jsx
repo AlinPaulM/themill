@@ -29,7 +29,7 @@ class Youtube extends React.Component {
 			<YouTube
 				videoId={videoId}
 				opts={{
-					playerVars: { // https://developers.google.com/youtube/player_parameters
+					playerVars: {
 						autoplay: 1,
 						origin: window.location.href
 					}
@@ -67,7 +67,6 @@ class Youtube extends React.Component {
 			if(this.props.youtube.fetchingData) return;
 			this.props.fetchYoutubeData(true);
 
-// console.log("this.props.youtube.fetchingData");
 			const uploadsPlaylistId = this.props.youtube.uploadsPlaylistId;
 			if(uploadsPlaylistId !== undefined)					
 				this.props.getYoutubeContent(uploadsPlaylistId, this.props.youtube.nextPageToken);
@@ -76,8 +75,6 @@ class Youtube extends React.Component {
 
 
 	render(){
-// console.log(this.props);
-		
 		// get data for the initial page load
 		if(this.props.youtube.uploadsPlaylistId !== null && !this.props.youtube.content.length)
 			this.props.getYoutubeContent(this.props.youtube.uploadsPlaylistId);

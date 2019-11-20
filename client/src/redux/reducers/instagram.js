@@ -53,7 +53,7 @@ export default function(state = initialState, action) {
 		case GET_INSTAGRAM_VIDEO_EMBED: {
 			const content = state.content;
 			content[action.payload.i].clicked = true;
-			content[action.payload.i].html = action.payload.html;
+			content[action.payload.i].videoSrc = action.payload.videoSrc;
 
 			return {
 				...state,

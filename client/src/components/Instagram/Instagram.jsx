@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from "react-redux";
 import { getInstagramContent, fetchInstagramData, loadInstagramImage, loadInstagramVideo } from "../../redux/actions.js";
 import Modal from 'react-modal';
-import './Instagram.scss';
 
 class Instagram extends React.Component {
 	constructor(props){
@@ -11,11 +10,6 @@ class Instagram extends React.Component {
 
 		// get data for the initial page load
 		this.props.getInstagramContent(this.props.instagram.authData.token, true);
-
-		const script = document.createElement("script");
-		script.src = "https://platform.instagram.com/en_US/embeds.js";
-		script.async = true;
-		document.body.appendChild(script);
 	}
 
 	openModal(i) {
@@ -66,27 +60,20 @@ class Instagram extends React.Component {
 					</div>
 				);
 			}
-
 		}
 		else if(content[i].media_type === "VIDEO"){
-			const innerElem = (
-				<div>
-					<img src={content[i].thumbnail_url} alt="" />
-					<div className="play"></div>
-				</div>
-			);
-			
 			if(content[i].clicked === undefined){
 				return (
 					<div onClick={() => this.props.loadInstagramVideo(content[i].permalink, i)}>
-						{innerElem}
+						<img src={content[i].thumbnail_url} alt="" />
+						<div className="play"></div>
 					</div>
 				);
 			}
 			else{
 				return (
 					<video controls autoPlay>
-						<source src={content[i].html} type="video/mp4" />
+						<source src={content[i].videoSrc} type="video/mp4" />
 					</video>
 				);
 			}
@@ -130,8 +117,6 @@ class Instagram extends React.Component {
 
 
 	render(){
-console.log(this);
-
 		window.addEventListener('scroll', this.loadMoreInstagramData);
 
 		return (

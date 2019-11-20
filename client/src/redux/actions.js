@@ -197,26 +197,17 @@ export const loadInstagramImage = (i) => {
 };
 
 export const loadInstagramVideo = (url, i) => async(dispatch) => {
-	// await axios.get('https://api.instagram.com/oembed',{
-	// 		params: {
-	// 			url: url,
-	// 			omitscript: true,
-	// 			hidecaption: true
-	// 		}
-	// 	})
-
 	// https://stackoverflow.com/questions/48701957/how-to-get-video-from-instagram-public-access-api
 	await axios.get(url+"?__a=1")
 		.then(function (response) {
 			dispatch({
 				type: GET_INSTAGRAM_VIDEO_EMBED, 
-				payload: {i: i, html: response.data.graphql.shortcode_media.video_url}
+				payload: {i: i, videoSrc: response.data.graphql.shortcode_media.video_url}
 			});
 		})
 		.catch(function (error) {
 			console.log(error);
 		})
 		.finally(function () {
-			window.instgrm.Embeds.process();
 		});
 };

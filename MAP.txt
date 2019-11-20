@@ -1,5 +1,5 @@
-STEPS FOR INSTALLATION ON WINDOWS
-----------------------------------
+DEVELOPMENT STEPS (USIG WINDOWS AS OS)
+---------------------------------------
 (you'll need to have PHP installed and have the PATH for PHP configured)
 -1. https://getcomposer.org/download/ - Download and run Composer-Setup.exe
 -2. https://symfony.com/download - download and run setup.exe
@@ -24,16 +24,14 @@ STEPS FOR INSTALLATION ON WINDOWS
 	"npm install axios"
 	"npm install redux-thunk"
 	"npm install react-youtube"
-	-then restart the frontent server, i.e. stop and re-run "npm start".
--8. https://developers.google.com/youtube
-	https://developers.google.com/youtube/v3/getting-started (YouTube Data API)
-		API key(Calling YouTube Data API v3 from a web browser): AIzaSyBkh3wmLBwxvC1DfAepsbRn9heVgGV9ofs
--9. in your CLI, navigate to the /client folder and run the following commands:
 	"npm install vimeo"
 	"npm install @u-wave/react-vimeo"
 	"npm install react-router-dom"
 	"npm install react-modal"
--10. INSTAGRAM INTEGRATION
+	-then restart the frontent server, i.e. stop and re-run "npm start".
+-8. https://developers.google.com/youtube
+	https://developers.google.com/youtube/v3/getting-started (YouTube Data API)
+-9. INSTAGRAM INTEGRATION
 	-prerequisites
 		(-you need to have a facebook account with https://developers.facebook.com/ enabled, obviously)
 		-if you haven't already, make sure your symfony app, i.e. DefaultController:index() (or whichever MyController:method() you wanna use), loads the react built index.html app for the "/" route - this way we can access the built app when we start the symfony server
@@ -44,32 +42,11 @@ STEPS FOR INSTALLATION ON WINDOWS
 				-run "symfony server:start" to run the symfony server with https
 					-from this point on, we're not using "php bin/console server:run" anymore.
 					-at this point we have the app running under "https://127.0.0.1:8000/" (or "https://localhost:8000/", that should work too)
-	-https://developers.facebook.com/docs/instagram-basic-display-api/getting-started - follow these STEPS (i also saved this page in "doc/instagram_setup.html")
+	-https://developers.facebook.com/docs/instagram-basic-display-api/getting-started - follow these STEPS (i also saved this page in "doc/instagram_setup.html"). some notes on some of the steps:
 		-Step 1: Create a Facebook App
 			-set the website url to where our app is, i.e. "https://localhost:8000/" (make sure it is HTTPS)
 		-Step 2: Configure Instagram Basic Display
 			-Valid OAuth Redirect URIs: we HAVE TO set this to our website url i.e. 'https://localhost:8000/', because it will be used to get the authorization codes - basically it'll redirect to our app, so we can get the code from the GET parameter, from the query string
 		-Step 3: Add an Instagram Test User
 			-i also HAVE TO add https://www.instagram.com/millchannel/ as a tester so that when i finished development retrieving data from my own instagram account, the app can allow https://www.instagram.com/millchannel/ to login with their credentials, and have the app display their data on the app
-		-Step 4: Authenticate the Test User
-
-
-
-	https://api.instagram.com/oauth/authorize?app_id=566407840787639&redirect_uri=https%3A%2F%2Flocalhost%3A8000%2F&scope=user_profile,user_media&response_type=code
-		-NOTE: idk why but the spacing for curl makes a difference, so copy-paste the example from instagram's API docs as it is, then edit it in sublime, then copy-paste it in git bash and hit enter to run it.
-curl -X POST \
-  'https://api.instagram.com/oauth/access_token' \
-  -F app_id=566407840787639 \
-  -F app_secret=30f34771ff0f7a16b9390eac9a19436f \
-  -F grant_type=authorization_code \
-  -F redirect_uri=https://localhost:8000/ \
-  -F code=AQApsSbhbgteJf27ml1NL94vhOSZQ4BobB09RQkE6t75PKSGGZ0uUVM9_UYXP8TaEovritPhznKYHFxdnhoelPhaMvaVsZuNs11A5S0RAOGMAxI2pkEwDRg62TmAjfHCg2RW3lCB6iIUGc6rNthvHAeY1eLs80kN5NY4b3HYMDURBa5tAg36_D19kF0OxiasbB5eJhkKLBfr1SUC9HHvPxy5e5KnKhrqkyFlmsM6Hmc04Q
-
-  "access_token": "IGQVJWZAWhiQ1YtTlhsSHhBZAUhTZA0REZAHhHMmtNUzdzVm9GRWtqYkVmYzhYT09mQ1dYNHh2R0xsMXhGWFUxcHNrS09ZAN3k4WHdmUFhPMkEwSUREVG81b2phUXZAyS2MzVzNSSWNRRVIxMFJjTnBQOGk3Y0VKX3lPWmZAMb3JZA", "user_id": 17841409433456753
-
-  curl -X GET \
-  'https://graph.instagram.com/17841409433456753?fields=id,username&access_token=IGQVJWZAWhiQ1YtTlhsSHhBZAUhTZA0REZAHhHMmtNUzdzVm9GRWtqYkVmYzhYT09mQ1dYNHh2R0xsMXhGWFUxcHNrS09ZAN3k4WHdmUFhPMkEwSUREVG81b2phUXZAyS2MzVzNSSWNRRVIxMFJjTnBQOGk3Y0VKX3lPWmZAMb3JZA'
-
-
-
--X. when you finish development for the project, in "client\src\redux\store.js" comment out the "window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()" so that the app will run on any browser, not just the browser that has the Redux Devtools installed
+-10. when you finish development for the project, in "client\src\redux\store.js" comment out the "window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()" so that the app will run on any browser, not just the browser that has the Redux Devtools installed
