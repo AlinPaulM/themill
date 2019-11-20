@@ -11,6 +11,7 @@ import {
 	SET_INSTAGRAM_AUTH_DATA,
 	FETCHING_INSTAGRAM_DATA,
 	GET_INSTAGRAM_CONTENT,
+	LOAD_INSTAGRAM_IMAGE,
 	GET_INSTAGRAM_VIDEO_EMBED
  } from "./actionTypes";
 
@@ -185,6 +186,13 @@ export const getInstagramContent = (val, firstRequest = false) => async(dispatch
 		})
 		.finally(function () {
 		});
+	}
+};
+
+export const loadInstagramImage = (i) => {
+	return {
+		type: LOAD_INSTAGRAM_IMAGE,
+		payload: i
 	}
 };
 
