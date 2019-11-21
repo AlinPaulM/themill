@@ -6,9 +6,9 @@ SETUP FOR WINDOWS
 -4. extract the project archive. open Git Bash and navigate to the extracted folder
 -5. run "symfony.exe server:ca:install". A prompt will ask you if you want to accept the certificate, select Yes.
 -6. run "symfony server:start" - this should display "[OK] Web server listening on https://127.0.0.1:8000" (ignore any warnings)
--7. the project requires you to login with the instagram credentials for your instagram user(https://www.instagram.com/millchannel/) which i set to be a test user in the app. 
-Before you do that, you have to log into your instagram account, go to (Profile Icon) > Edit Profile > Apps and Websites, and under TESTER INVITES accept to be a test user for the app, 
-so the app can access your data.
-	-if you want to test the app with another instagram account, email me to let me know, and i will set your instagram account as a test user for the app. (you can't run the app 
-until this step is completed)
+-7. the project requires you to login with the instagram credentials for your instagram user(https://www.instagram.com/millchannel/) which i set to be
+a test user in the app. Before you do that, you have to log into your instagram account, go to (Profile Icon) > Edit Profile > Apps and Websites, 
+and under TESTER INVITES accept to be a test user for the app, so the app can access your data.
+	-if you want to test the app with another instagram account, email me to let me know, and i will set your instagram account as a test user for the app.
+	(you can't run the app until this step is completed)
 -8. go to https://127.0.0.1:8000, and log in with your instagram account credentials.
